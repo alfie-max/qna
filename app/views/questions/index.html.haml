@@ -1,1 +1,5 @@
 = link_to 'Add Question', new_question_path
+
+%ul
+  - @questions.each do |q|
+    %li= link_to q.title, q, class: 'question'

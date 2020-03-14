@@ -17,6 +17,7 @@ gem 'haml-rails'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
+gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 
 group :development, :test do
   gem 'pry-rails'

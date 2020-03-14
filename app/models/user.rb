@@ -8,4 +8,10 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   has_many :questions
+
+  acts_as_follower
+  acts_as_followable
+
+  alias_attribute :following, :following_users
+  alias_attribute :topics, :following_topics
 end

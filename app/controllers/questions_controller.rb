@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
-  def index
+  before_action :set_question, only: %i[show]
 
+  def index
+    @questions = Question.all
   end
 
   def new
@@ -18,9 +20,15 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def show; end
+
   private
 
   def question_params
     params.require(:question).permit(:title, topic_attributes: [:name])
+  end
+
+  def set_question
+    @question ||= Question.find(params[:id])
   end
 end
