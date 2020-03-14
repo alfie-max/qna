@@ -1,0 +1,12 @@
+= form_for @question do |f|
+  .field
+    = f.label :title
+    %br
+    = f.text_field :title, autofocus: true, autocomplete: :off
+  .field
+    = f.fields_for :topic do |tf|
+      = tf.label :name, 'Topic'
+      %br
+      = tf.text_field :name
+  .actions
+    = f.submit "Post Question"
