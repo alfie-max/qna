@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
 
   has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   acts_as_follower
   acts_as_followable

@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users
 
   root 'questions#index'
-  resources :questions
+  resources :questions do
+    member do
+      post :answer
+    end
+  end
 
    scope path: :follows, as: :follow, controller: :follows do
     get :user

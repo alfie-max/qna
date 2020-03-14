@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[show]
+  before_action :set_question, only: %i[show answer]
 
   def index
     @questions = Question.all
@@ -22,10 +22,21 @@ class QuestionsController < ApplicationController
 
   def show; end
 
+  def answer
+    @answer = current_user.answers.new(answer_params)
+
+    @answer.save
+    redirect_to @question
+  end
+
   private
 
   def question_params
     params.require(:question).permit(:title, topic_attributes: [:name])
+  end
+
+  def answer_params
+    params.require(:answer).permit(:ans).merge(question: @question)
   end
 
   def set_question

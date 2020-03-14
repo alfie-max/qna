@@ -2,3 +2,22 @@
 
 = link_to 'Follow User', follow_user_path(user_id: @question.author.id), class: 'follow_user'
 = link_to 'Follow Topic', follow_topic_path(topic_id: @question.topic.id), class: 'follow_topic'
+
+%br
+%br
+
+Submit Your Answer
+
+= form_for Answer.new, url: answer_question_path(@question) do |f|
+  .field
+    = f.text_area :ans, autofocus: true, autocomplete: :off, rows: 10
+  .actions
+    = f.submit "Post Answer"
+
+%br
+%br
+
+%ul
+  - @question.answers.each do |ans|
+    %li
+      .answer= ans.ans
