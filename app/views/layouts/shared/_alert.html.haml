@@ -1,2 +1,5 @@
-%p.notice= notice
-%p.alert= alert
+.form-group
+  - if notice.present?
+    %p.alert.alert-success= notice
+  - if alert.present?
+    %p.alert.alert-warning= alert

@@ -1,18 +1,12 @@
 = form_for @question || Question.new do |f|
-  .field
+  .form-group
     = f.label :title
-    %br
-    = f.text_field :title, autofocus: true, autocomplete: :off, required: true
-  .field
-    %br
+    = f.text_field :title, autofocus: true, autocomplete: :off, required: true, class: 'form-control'
+  .form-group
     = label_tag :topic_name, 'Topic (Select a topic)'
-    %br
-    = select_tag :topic_id, options_from_collection_for_select(Topic.all, :id, :name), include_blank: true
-    %br
-    %br
+    = select_tag :topic_id, options_from_collection_for_select(Topic.all, :id, :name), include_blank: true, class: 'form-control', prompt: 'Select a Topic'
+  .form-group
     OR (enter a new topic)
-    %br
-    = text_field_tag :new_topic, nil
+    = text_field_tag :new_topic, nil, class: 'form-control', placeholder: 'New Topic'
   .actions
-    %br
-    = f.submit "Post Question"
+    = f.submit "Post Question", class: 'btn btn-sm btn-primary'

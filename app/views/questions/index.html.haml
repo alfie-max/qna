@@ -1,5 +1,5 @@
-= link_to 'Add Question', new_question_path
-
-%ul
-  - @questions.each do |q|
-    %li= link_to q.title, q, class: 'question'
+- @questions.each do |q|
+  .card{style: "width: 28rem;"}
+    %ul.list-group.list-group-flush
+      %li.list-group-item
+        = link_to q.title, q, class: 'question'
