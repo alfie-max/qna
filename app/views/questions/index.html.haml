@@ -3,3 +3,6 @@
     %ul.list-group.list-group-flush
       %li.list-group-item
         = link_to q.title, q, class: 'question'
+
+.digg_pagination
+  = will_paginate @questions, container: false

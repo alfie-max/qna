@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   before_action :set_topic, only: %i[create]
 
   def index
-    @questions = Question.all
+    @questions = Question.paginate(page: params[:page])
   end
 
   def create
