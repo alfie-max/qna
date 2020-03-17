@@ -5,8 +5,6 @@ class QuestionsController < ApplicationController
     @questions = Question.all
   end
 
-  def new; end
-
   def create
     @question = current_user.questions.new(question_params)
 
