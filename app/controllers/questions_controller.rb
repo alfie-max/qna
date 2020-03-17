@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
     elsif params[:new_topic].present?
       @topic = Topic.create(name: params[:new_topic])
     else
-      flash.alert = 'Topic must be present'
+      flash.alert = I18n.t('topic.required')
       redirect_to new_question_path and return
     end
   end

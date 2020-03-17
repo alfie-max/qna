@@ -1,8 +1,10 @@
 class FollowsController < ApplicationController
   def user
     user = User.find(params[:user_id])
-    if user.followed_by?(current_user)
-      flash.alert = 'Already following'
+    if current_user == user
+      flash.alert = I18n.t('follow.self')
+    elsif user.followed_by?(current_user)
+      flash.alert = I18n.t('follow.following')
     else
       current_user.follow(user)
     end
@@ -12,7 +14,7 @@ class FollowsController < ApplicationController
   def topic
     topic = Topic.find(params[:topic_id])
     if topic.followed_by?(current_user)
-      flash.alert = 'Already following'
+      flash.alert = I18n.t('follow.following')
     else
       current_user.follow(topic)
     end
