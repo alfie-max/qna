@@ -7,13 +7,13 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+
   </head>
 
   <body>
-    <%= link_to 'Home', root_path %>
-    <%= link_to 'Log Out', destroy_user_session_path, method: :delete %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= render 'layouts/shared/header' %>
+    <%= render 'layouts/shared/alert' %>
 
     <%= yield %>
   </body>
