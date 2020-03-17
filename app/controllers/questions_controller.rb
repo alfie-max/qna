@@ -1,14 +1,11 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[show answer]
+  before_action :set_topic, only: %i[create]
 
   def index
     @questions = Question.all
   end
 
-  def new
-    @question = Question.new
-    @question.build_topic
-  end
+  def new; end
 
   def create
     @question = current_user.questions.new(question_params)
@@ -20,26 +17,34 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @question = Question.includes(:answers, :topic, :author).find(params[:id])
+  end
 
   def answer
-    @answer = current_user.answers.new(answer_params)
-
-    @answer.save
+    @question = Question.find(params[:id])
+    current_user.answers.create(answer_params)
     redirect_to @question
   end
 
   private
 
   def question_params
-    params.require(:question).permit(:title, topic_attributes: [:name])
+    params.require(:question).permit(:title).merge(topic: @topic)
   end
 
   def answer_params
     params.require(:answer).permit(:ans).merge(question: @question)
   end
 
-  def set_question
-    @question ||= Question.find(params[:id])
+  def set_topic
+    if params[:topic_id].present?
+      @topic = Topic.find(params[:topic_id])
+    elsif params[:new_topic].present?
+      @topic = Topic.create(name: params[:new_topic])
+    else
+      flash.alert = 'Topic must be present'
+      redirect_to new_question_path and return
+    end
   end
 end

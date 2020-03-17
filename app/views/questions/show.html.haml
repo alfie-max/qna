@@ -6,11 +6,11 @@
 %br
 %br
 
-Submit Your Answer
+Your Answer
 
 = form_for Answer.new, url: answer_question_path(@question) do |f|
   .field
-    = f.text_area :ans, autofocus: true, autocomplete: :off, rows: 10
+    = f.text_area :ans, autofocus: true, autocomplete: :off, size: '50x5', required: true
   .actions
     = f.submit "Post Answer"
 

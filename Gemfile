@@ -20,6 +20,7 @@ gem 'devise'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 
 group :development, :test do
+  gem 'bullet'
   gem 'pry-rails'
 end
 

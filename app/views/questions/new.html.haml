@@ -1,12 +1,18 @@
-= form_for @question do |f|
+= form_for @question || Question.new do |f|
   .field
     = f.label :title
     %br
-    = f.text_field :title, autofocus: true, autocomplete: :off
+    = f.text_field :title, autofocus: true, autocomplete: :off, required: true
   .field
-    = f.fields_for :topic do |tf|
-      = tf.label :name, 'Topic'
-      %br
-      = tf.text_field :name
+    %br
+    = label_tag :topic_name, 'Topic (Select a topic)'
+    %br
+    = select_tag :topic_id, options_from_collection_for_select(Topic.all, :id, :name), include_blank: true
+    %br
+    %br
+    OR (enter a new topic)
+    %br
+    = text_field_tag :new_topic, nil
   .actions
+    %br
     = f.submit "Post Question"
